@@ -1,79 +1,56 @@
-/*
- * this is the Palindrome program
- *
- * @author  Emmanuel FN
- * @version 1.0
- * @since   2024-04-09
- */
-
 import java.util.Scanner;
 
 /**
-* This is the standard "Palindrome" program.
+ * This program prints the max run of any string.
+ *
+ * @author Emmanuel.FN
+ * @version 1.0
+ * @since 2024-05-05
 */
-final class Palindrome {
 
+public class MaxRun {
     /**
-    * Prevent instantiation.
-    * Throw an exception IllegalStateException.
-    * if this is ever called
-    *
-    * @throws IllegalStateException if this is ever called
-    *
-    */
-    private Palindrome() {
-        throw new IllegalStateException("Cannot be instantiated");
-    }
-
-    /**
-    * This function calculates if a string is a palindrome.
-    *
-    * @param userString The user's input.
-    *
-    * @return isPalindrome is the string a palindrome
-    */
-    public static boolean palindrome(String userString) {
-        String reversedString = "";
-        final boolean isPalindrome;
-        // reverse string
-        for (int counter = userString.length() - 1; counter >= 0; counter--) {
-            reversedString += userString.charAt(counter);
-        }
-        // check if string is palindrome (capitalization doesn't matter)
-        if (userString.equalsIgnoreCase(reversedString.toString())) {
-            isPalindrome = true;
-        } else {
-            isPalindrome = false;
-        }
-
-        return isPalindrome;
-    }
-
-    /**
-    * The starting main() function.
-    *
-    * @param args No args will be used
-    */
-    public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-
-        // Input
-        System.out.print("Enter a string: ");
-        final String userString = scanner.nextLine().trim();
-
-        // Error check
-        if (userString.length() == 0) {
-            System.out.println("Invalid input.");
-        } else {
-            // Process
-            final boolean isPalindrome = palindrome(userString);
-            // output
-            if (isPalindrome) {
-                System.out.println(userString + " is a palindrome.");
+     * Function to find the longest consecutive run of identical characters in a given string.
+     *
+     * @param userWord The string to examine.
+     * @return The length of the longest run.
+     */
+    public static int maxRunFunction(String userWord) {
+        int maxRun = 1; // Initialize maximum run
+        int currentRun = 1; // Initialize current run count
+        
+        // Loop through the string to find consecutive runs
+        for (int counter = 0; counter < userWord.length() - 1; counter++) {
+            if (userWord.charAt(counter) == userWord.charAt(counter + 1)) {
+                currentRun++; // Increment the current run if the characters are the same
             } else {
-                System.out.println(userString + " is NOT a palindrome.");
+                if (currentRun > maxRun) {
+                    maxRun = currentRun; // Update the maximum run if the current run is longer
+                }
+                currentRun = 1; // Reset the current run count
             }
         }
+
+        // Check the final run to ensure it is included in the maximum
+        if (currentRun > maxRun) {
+            maxRun = currentRun;
+        }
+
+        return maxRun;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Ask the user to enter a string
+        System.out.print("Enter a string: ");
+        String userString = scanner.nextLine();
+
+        // Calculate the maximum run of identical characters
+        int maxRunValue = maxRunFunction(userString);
+
+        // Output the result
+        System.out.println("The max run is " + maxRunValue);
 
         System.out.println("\nDone.");
     }
