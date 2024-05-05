@@ -10,7 +10,8 @@ import java.util.Scanner;
 
 public class MaxRun {
     /**
-     * Function to find the longest consecutive run of identical characters in a given string.
+     * Function to find the longest consecutive run of 
+     * identical characters in a given string.
      *
      * @param userWord The string to examine.
      * @return The length of the longest run.
