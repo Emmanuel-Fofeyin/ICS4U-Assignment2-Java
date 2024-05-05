@@ -19,7 +19,7 @@ public class MaxRun {
     public static int maxRunFunction(String userWord) {
         int maxRun = 1; // Initialize maximum run
         int currentRun = 1; // Initialize current run count
-        
+
         // Loop through the string to find consecutive runs
         for (int counter = 0; counter < userWord.length() - 1; counter++) {
             if (userWord.charAt(counter) == userWord.charAt(counter + 1)) {
